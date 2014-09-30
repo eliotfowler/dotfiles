@@ -1,0 +1,10 @@
+#!/bin/bash
+# 
+# Credit Gary Bernhardt: https://github.com/garybernhardt/dotfiles/blob/master/bin/breadth-first-find
+
+depth=0
+
+while find $* -mindepth $depth -maxdepth $depth | grep '.'
+do
+    depth=$((depth + 1))
+done

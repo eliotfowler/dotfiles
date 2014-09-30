@@ -1,0 +1,1 @@
+!git pull --rebase && B=$(git rev-parse --abbrev-ref HEAD) && git branch -r | sed -e 's/origin\\///g' | grep -v $B | grep -v "deleted/" | grep -v HEAD | xargs -L 1 -I %  sh -c "'{ git checkout %; git pull --rebase; }'" && git checkout $B

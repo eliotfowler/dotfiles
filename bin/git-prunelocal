@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Prunes all local branches that have been deleted from origin
+
+LOCAL_BRANCHES=$(git branch | grep -v deleted/.*)
+REMOTE_DEL_BRANCHES=$(git branch -r | grep origin/deleted/.*)
+
+trim() {
+        echo $1 | tr -d "*" | sed 's/ *$//' | sed 's/^ *//'
+}
+
+IFS=$'\n'; for line in $LOCAL_BRANCHES; do
+                trim_line=$(trim "$line")
+                DNAME="origin/deleted/$trim_line";
+                for rline in $REMOTE_DEL_BRANCHES; do
+                                trim_rline=$(trim "$rline") 
+                                if [[ "$DNAME" == "$trim_rline" ]]; then 
+                                                git branch -d $trim_line;
+                                                break;
+                                fi;
+                done;    
+done;
+

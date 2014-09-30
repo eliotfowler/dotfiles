@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# Move the current branch on its tracking branch to /deleted/{branch}
+#
+# Author: Eliot Fowler
+#
+
+shouldDeleteLocal=false
+forceDeleteLocal=false
+branch=''
+
+while getopts ":lf" OPTION
+do
+    case $OPTION in
+    l)
+        shouldDeleteLocal=true
+        branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    ;;
+    f)
+        forceDeleteLocal=true
+    ;;
+    [?])
+        echo "Usage     : $(basename $0) <remote> <branch name>"
+        echo "Example   : $(basename $0) origin feature/3.3/android-pull-to-refresh"
+        exit 1
+    ;;
+    esac
+done
+shift $(($OPTIND-1))
+
+if [ $# -ne 2 ]; then
+    echo "Move a branch on a remote to /deleted/{branch}.\n"
+    echo "Usage     : $(basename $0) <remote> <branch name>"
+    echo "Example   : $(basename $0) origin feature/3.3/android-pull-to-refresh"
+    exit 1
+fi
+
+if [ "$shouldDeleteLocal" == "true" ] && [ "$branch" == "$2" ] ; then
+    echo "Trying to delete local branch that is currently checked out. Switch branches and try again or remove the -l flag"
+    exit 1
+fi
+
+if [ "$forceDeleteLocal" == "true" ] && [ "$shouldDeleteLocal" == "false" ] ; then
+    echo "lol what are you trying to force?"
+    exit 1
+fi
+
+# Actually move the branch on remote
+git push $1 $1/$2:refs/heads/deleted/$2 :$2
+
+if [ "$shouldDeleteLocal" == "true" ] && [ "$forceDeleteLocal" == "false" ] ; then
+    git branch -d $2
+fi
+
+if [ "$shouldDeleteLocal" == "true" ] && [ "$forceDeleteLocal" == "true" ] ; then
+    git branch -D $2
+fi
