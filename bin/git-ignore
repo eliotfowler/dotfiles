@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Ignore a file
+
+([ ! -e .gitignore ] && touch .gitignore ) | echo $1 >>.gitignore
