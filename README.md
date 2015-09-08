@@ -1,6 +1,6 @@
 # Eliot does holman's dotfiles 
 
-As denoted by that cool little icon above with the accompanied text, I forked Zach Holman's dotfiles.
+I forked Zach Holman's dotfiles.
 
 To learn about the philosophy behind the setup and why it is so cool, I recommend you [check them out](http://github.com/holman/dotfiles).
 
