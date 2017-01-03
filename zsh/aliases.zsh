@@ -1,2 +1,3 @@
 alias reload!='. ~/.zshrc'
-alias ll='ls -la'
+
+alias cls='clear' # Good 'ol Clear Screen command
