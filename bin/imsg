@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+# imsg - Send iMessages from the command line.
+#
+# Usage: imsg <recipient e-mail/phone> <message>
+
+framework 'ScriptingBridge'
+
+# Scripting Bridge is hella cool.
+messages = SBApplication.applicationWithBundleIdentifier('com.apple.iChat')
+buddies = messages.buddies
+
+buddy = buddies.find do |b|
+  b.id.include? ARGV[0]
+end
+
+unless buddy
+  warn "Error: No buddy with that address."
+  exit 1
+end
+
+msg = ARGV[1..-1].join(" ")
+messages.send msg, :to => buddy
+
+# Hide the opened application.
+command = "'tell application \"System Events\"\nset visible of process \"Messages\" to false\nend tell'"
+system "osascript -e #{command}"

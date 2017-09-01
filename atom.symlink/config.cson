@@ -22,10 +22,11 @@
     ]
   editor:
     fontFamily: "Menlo"
-    fontSize: 15
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
+  "git-blame":
+    columnWidth: 306
   "go-plus":
     panelDisplayMode: "closed"
   "linter-eslint":
