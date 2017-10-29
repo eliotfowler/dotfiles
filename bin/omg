@@ -1,1 +1,5 @@
-ruby ~/Desktop/omg/omg.rb "$@"
+#!/bin/sh
+script_name=$0
+script_dir=$(dirname "$0")
+
+ruby "$script_dir/omg-script/omg.rb" "$@"

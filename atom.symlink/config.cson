@@ -40,6 +40,7 @@
     telemetryConsent: "no"
   editor:
     fontFamily: "Menlo"
+    fontSize: 17
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
@@ -48,6 +49,7 @@
   "go-plus":
     panelDisplayMode: "closed"
   "linter-eslint":
+    globalNodePath: "/usr/local"
     useGlobalEslint: true
   "prettier-atom":
     formatOnSaveOptions:
