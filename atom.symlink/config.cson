@@ -19,6 +19,8 @@
   "autocomplete-modules":
     babelPluginModuleResolver: true
     webpack: true
+  "autocomplete-python":
+    useKite: false
   core:
     closeDeletedFileTabs: true
     closeEmptyWindows: false
@@ -42,6 +44,7 @@
     fontFamily: "Menlo"
     fontSize: 17
     invisibles: {}
+    preferredLineLength: 120
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
   "git-blame":
@@ -51,6 +54,8 @@
   "linter-eslint":
     globalNodePath: "/usr/local"
     useGlobalEslint: true
+  "linter-ui-default":
+    showPanel: true
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
@@ -72,5 +77,5 @@
     autoIndent: true
 ".js.jsx.source":
   editor:
-    autoIndent: false
-    autoIndentOnPaste: false
+    autoIndent: true
+    autoIndentOnPaste: true
