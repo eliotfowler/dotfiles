@@ -48,9 +48,3 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
-
-# added by travis gem
-[ -f /Users/eliotfowler/.travis/travis.sh ] && source /Users/eliotfowler/.travis/travis.sh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$N_PREFIX/bin:$PATH"
