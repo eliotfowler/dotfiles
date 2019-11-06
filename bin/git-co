@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# Shortcut for checkout.
-
-git checkout $@
