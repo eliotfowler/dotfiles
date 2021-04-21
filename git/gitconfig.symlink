@@ -35,12 +35,30 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [credential]
 	helper = osxkeychain
+	helper = store --file /Users/eliotfowler/.fastlane/.tmp/git-auth-a3ecdfcb-d9d3-438f-bfe3-c98a2f66d37d
+	helper = store --file /Users/eliotfowler/.fastlane/.tmp/git-auth-3356c744c58bb6eb019be8efd51d0fe8aca03c2615c520443afd7fb72e2fa30b
+	helper = store --file /Users/eliotfowler/.fastlane/.tmp/git-auth-3356c744c58bb6eb019be8efd51d0fe8aca03c2615c520443afd7fb72e2fa30b
 [merge]
 	tool = p4mergetool
 [mergetool "p4mergetool"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 	trustExitCode = false
+[diff]
+	tool = p4mergetool
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+    tool = Kaleidoscope
+	tool = p4mergetool
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+[difftool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[user]
+	name = Eliot Fowler
+	email = eliot@eliotfowler.com

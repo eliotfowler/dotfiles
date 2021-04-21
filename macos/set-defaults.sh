@@ -23,9 +23,6 @@ chflags nohidden ~/Library
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-# Hide Safari's bookmark bar.
-defaults write com.apple.Safari ShowFavoritesBar -bool false
-
 # Set up Safari for development.
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -35,3 +32,6 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Change the screenshot location
 defaults write com.apple.screencapture location ~/Documents/Screenshots
+
+# Show build time in Xcode
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES

@@ -1,11 +1,11 @@
 #!/bin/sh
 #
 # Author: Eliot Fowler
-# 
+#
 # Show all commits you've done in the past day
 
 when=""
-user=$(git config user.name)
+user=$(git config --get user.name)
 
 if [[ "1" == "$(date +%u)" ]]
 then
@@ -14,4 +14,4 @@ else
     when="yesterday"
 fi
 
-git log --author="Eliot" --since="$when" --all --reverse --oneline
+git log --author="$user" --since="$when" --all --reverse --oneline
